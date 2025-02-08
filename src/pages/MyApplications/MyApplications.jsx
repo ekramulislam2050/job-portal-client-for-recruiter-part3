@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
+import axios from 'axios';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const MyApplications = () => {
     const { user } = useAuth();
     const [jobs, setJobs] = useState([]);
-
+    const axiosInstance = useAxiosSecure()
     useEffect(() => {
-        fetch(`http://localhost:5000/job-application?email=${user.email}`)
-            .then(res => res.json())
-            .then(data => setJobs(data))
+        // fetch(`https://job-portal-server-for-recruiter-part3-nu-nine.vercel.app/job-application?email=${user.email}`)
+        //     .then(res => res.json())
+        //     .then(data => setJobs(data))
+
+        // axios.get(`https://job-portal-server-for-recruiter-part3-nu-nine.vercel.app/job-application?email=${user.email}`,{withCredentials:true})
+        // .then(res=>setJobs(res.data))
+        
+        axiosInstance.get(`/job-application?email=${user.email}`)
+        .then(res=>setJobs(res.data))
     }, [user.email])
 
     return (
@@ -42,7 +50,7 @@ const MyApplications = () => {
                                 <td>
                                     <div className="flex items-center gap-3">
                                         <div className="avatar">
-                                            <div className="mask mask-squircle h-12 w-12">
+                                            <div className="w-12 h-12 mask mask-squircle">
                                                 <img
                                                     src={job.company_logo}
                                                     alt="Avatar Tailwind CSS Component" />
