@@ -3,17 +3,17 @@ import { useEffect, useState } from "react";
 
  
 
-const useJobs = (sort) => {
-  // console.log(sort)
+const useJobs = (sort,search) => {
+  console.log(search)
     const [jobs,setJobs]=useState([])
     const [loading,setLoading]=useState(true)
     useEffect(()=>{
-      axios.get(`http://localhost:3000/jobs?sort=${sort}`)
+      axios.get(`http://localhost:3000/jobs?sort=${sort}&search=${search}`)
       .then(res=>{
         setJobs(res.data)
         setLoading(false)
       })
-    },[sort])
+    },[sort,search])
     return {jobs,loading}
 };
 
