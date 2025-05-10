@@ -1,11 +1,12 @@
 import React from 'react';
 import Swal from 'sweetalert2';
 import useAuth from '../../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 const AddJob = () => {
 
     const { user } = useAuth();
-
+    const navigate = useNavigate()
     const handleAddJob = e => {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -64,7 +65,7 @@ const AddJob = () => {
                     <label className="label">
                         <span className="label-text">Job Type</span>
                     </label>
-                    <select defaultValue="Pick a Job type" className="select select-ghost w-full max-w-xs">
+                    <select defaultValue="Pick a Job type" className="w-full max-w-xs select select-ghost">
                         <option disabled>Pick a Job type</option>
                         <option>Full-time</option>
                         <option>Intern</option>
@@ -76,7 +77,7 @@ const AddJob = () => {
                     <label className="label">
                         <span className="label-text">Job Field</span>
                     </label>
-                    <select defaultValue="Pick a Job Field" className="select select-ghost w-full max-w-xs">
+                    <select defaultValue="Pick a Job Field" className="w-full max-w-xs select select-ghost">
                         <option disabled>Pick a Job Field</option>
                         <option>Engineering</option>
                         <option>Marketing</option>
@@ -85,18 +86,18 @@ const AddJob = () => {
                     </select>
                 </div>
                 {/* salary range */}
-                <div className='grid grid-cols-1 lg:grid-cols-3 gap-4 items-end'>
+                <div className='grid items-end grid-cols-1 gap-4 lg:grid-cols-3'>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Salary Range</span>
                         </label>
-                        <input type="text" name='min' placeholder="Min" className="input input-bordered" required />
+                        <input type="number" name='min' placeholder="Min" className="input input-bordered" required />
                     </div>
                     <div className="form-control">
-                        <input type="text" name='max' placeholder="Max " className="input input-bordered" required />
+                        <input type="number" name='max' placeholder="Max " className="input input-bordered" required />
                     </div>
                     <div className="form-control">
-                        <select defaultValue="Currency" name="currency" className="select select-ghost w-full max-w-xs">
+                        <select defaultValue="Currency" name="currency" className="w-full max-w-xs select select-ghost">
                             <option disabled>Currency</option>
                             <option>BDT</option>
                             <option>USD</option>
@@ -145,7 +146,7 @@ const AddJob = () => {
                     <label className="label">
                         <span className="label-text">HR Email</span>
                     </label>
-                    <input type="text" defaultValue={user?.email} name='hr_email' placeholder="HR Email" className="input input-bordered" required />
+                    <input type="text" defaultValue={user?.email} name='hr_email' placeholder="HR Email" className="input input-bordered" required readOnly/>
                 </div>
                 {/* application Deadline */}
                 <div className="form-control">
@@ -162,7 +163,7 @@ const AddJob = () => {
                     <input type="text" name='company_logo' placeholder="Company Logo URL" className="input input-bordered" required />
                 </div>
                 {/* submit button */}
-                <div className="form-control mt-6">
+                <div className="mt-6 form-control">
                     <button className="btn btn-primary">Submit</button>
                 </div>
             </form>

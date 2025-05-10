@@ -1,10 +1,10 @@
-import React from 'react';
+
 import { useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const ViewApplications = () => {
     const applications = useLoaderData();
-
+     console.log(applications)
     const handleStatusUpdate = (e, id) => {
         console.log(e.target.value, id)
         const data = {
@@ -55,7 +55,7 @@ const ViewApplications = () => {
                                     <select
                                         onChange={(e) => handleStatusUpdate(e, app._id)}
                                         defaultValue={app.status || 'Change Status'}
-                                        className="select select-bordered select-xs w-full max-w-xs">
+                                        className="w-full max-w-xs select select-bordered select-xs">
                                         <option disabled>Change Status</option>
                                         <option>Under Review</option>
                                         <option>Set Interview</option>

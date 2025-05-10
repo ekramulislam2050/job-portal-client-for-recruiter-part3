@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 const MyPostedJobs = () => {
     const [jobs, setJobs] = useState([]);
     const { user } = useAuth();
-
+    console.log(user.email)
     useEffect(() => {
-        fetch(`https://job-portal-server-for-recruiter-part3-nu-nine.vercel.app/jobs?email=${user.email}`)
+        fetch(`https://job-portal-server-for-recruiter-part3-nu-nine.vercel.app/jobsGetByEmail?email=${user.email}`)
             .then(res => res.json())
             .then(data => setJobs(data))
     }, [user.email])
@@ -29,7 +29,10 @@ const MyPostedJobs = () => {
                     </thead>
                     <tbody>
                         {
-                            jobs.map((job, index) => <tr>
+                            jobs.map((job, index) =>{
+                                console.log(job._id)
+                               return <tr key={index}>
+                              
                                 <th>{index + 1}</th>
                                 <td>{job.title}</td>
                                 <td>{job.applicationDeadline}</td>
@@ -39,7 +42,7 @@ const MyPostedJobs = () => {
                                         <button className='btn btn-link'>View Applications</button>
                                     </Link>
                                 </td>
-                            </tr>)
+                            </tr>})
                         }
                     </tbody>
                 </table>
