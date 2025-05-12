@@ -4,14 +4,14 @@ import AuthContext from '../../context/AuthContext/AuthContext';
 
 const HotJobs = () => {
     // const {user}=useContext(AuthContext)
-    // console.log(user.email)
+   
     const [jobs, setJobs] = useState([]);
 
     useEffect(() => {
         fetch('https://job-portal-server-for-recruiter-part3-nu-nine.vercel.app/jobs')
             .then(res => res.json())
             .then(data => {
-                console.log("hotJobs",data)
+               
                 setJobs(data);
             })
     }, [])

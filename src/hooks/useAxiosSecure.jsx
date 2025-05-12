@@ -14,16 +14,16 @@ const useAxiosSecure = () => {
         axiosInstance.interceptors.response.use(response=>{
             return response
         },error=>{
-            console.log("error caught in interceptor",error)
+      
             if(error.status == 401 || error.status == 403){
-                console.log("user need logout")
+              
                 signOutUser()
                 .then(()=>{
-                    console.log("log out user")
+                 
                     navigate("/signIn")
                 })
                 .catch(error=>{
-                    console.log(error)
+                 
                 })
             }
             return Promise.reject(error)

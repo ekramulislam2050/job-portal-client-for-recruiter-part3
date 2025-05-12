@@ -9,7 +9,7 @@ const SignIn = () => {
     const { singInUser } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
-    console.log('in signIn page', location)
+    
     const from = location.state || '/';
 
     const handleSignIn = e => {
@@ -17,27 +17,27 @@ const SignIn = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);
+      
 
         singInUser(email, password)
             .then(result => {
-                console.log('sign in', result.user)
+              
                 navigate(from);
             })
             .catch(error => {
-                console.log(error);
+               
             })
 
     }
 
     return (
-        <div className="hero bg-base-200 min-h-screen">
-            <div className="hero-content flex-col lg:flex-row-reverse">
+        <div className="min-h-screen hero bg-base-200">
+            <div className="flex-col hero-content lg:flex-row-reverse">
                 <div className="text-center lg:text-left w-96">
                     <Lottie animationData={loginLottieJSON}></Lottie>
                 </div>
-                <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-                    <h1 className="ml-8 mt-4 text-5xl font-bold">Login now!</h1>
+                <div className="w-full max-w-sm shadow-2xl card bg-base-100 shrink-0">
+                    <h1 className="mt-4 ml-8 text-5xl font-bold">Login now!</h1>
                     <form onSubmit={handleSignIn} className="card-body">
                         <div className="form-control">
                             <label className="label">
@@ -54,7 +54,7 @@ const SignIn = () => {
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
                         </div>
-                        <div className="form-control mt-6">
+                        <div className="mt-6 form-control">
                             <button className="btn btn-primary">Login</button>
                         </div>
                     </form>

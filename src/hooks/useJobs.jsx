@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
  
 
 const useJobs = (sort,search,min,max) => {
-  console.log(search)
+
     const [jobs,setJobs]=useState([])
     const [loading,setLoading]=useState(true)
     useEffect(()=>{

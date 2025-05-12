@@ -7,10 +7,10 @@ const SocialLogin = () => {
     const handleGoogleSignIn = () => {
         singInWithGoogle()
             .then(result => {
-                console.log(result.user)
+              
             })
             .catch(error => {
-                console.log(error.message)
+               
             })
     }
 

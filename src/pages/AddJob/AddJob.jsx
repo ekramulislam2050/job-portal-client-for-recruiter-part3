@@ -10,15 +10,15 @@ const AddJob = () => {
     const handleAddJob = e => {
         e.preventDefault();
         const formData = new FormData(e.target);
-        // console.log(formData.entries())
+       
         const initialData = Object.fromEntries(formData.entries());
-        // console.log(initialData)
+    
         const { min, max, currency, ...newJob } = initialData;
-        console.log(min, max, currency, newJob)
+
         newJob.salaryRange = { min:parseInt(min), max:parseInt(max), currency }
         newJob.requirements = newJob.requirements.split('\n');
         newJob.responsibilities = newJob.responsibilities.split('\n')
-        console.log(newJob);
+   
 
         fetch('https://job-portal-server-for-recruiter-part3-nu-nine.vercel.app/jobs', {
             method: 'POST',

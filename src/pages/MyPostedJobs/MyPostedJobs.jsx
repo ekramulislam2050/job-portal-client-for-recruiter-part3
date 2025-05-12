@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const MyPostedJobs = () => {
     const [jobs, setJobs] = useState([]);
     const { user } = useAuth();
-    console.log(user.email)
+ 
     useEffect(() => {
         fetch(`https://job-portal-server-for-recruiter-part3-nu-nine.vercel.app/jobsGetByEmail?email=${user.email}`)
             .then(res => res.json())
@@ -30,7 +30,7 @@ const MyPostedJobs = () => {
                     <tbody>
                         {
                             jobs.map((job, index) =>{
-                                console.log(job._id)
+                            
                                return <tr key={index}>
                               
                                 <th>{index + 1}</th>

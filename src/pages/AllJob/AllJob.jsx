@@ -11,7 +11,7 @@ const AllJob = () => {
     const [search, setSearch] = useState("")
     const clearDebounce = useRef(null)
 
-    // console.log(search)
+  
     const { jobs, loading } = useJobs(sort, search, min, max)
     if (loading) {
         return <p className="text-5xl text-center text-red-500">Loading............</p>
