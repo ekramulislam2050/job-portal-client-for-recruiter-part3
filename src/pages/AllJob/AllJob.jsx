@@ -40,22 +40,6 @@ const AllJob = () => {
    }
 
 
-    // const handleSearch = debounce((value) => setSearch(value) )
-    //  const handleMin=debounce((value)=>setMin(value))
-    //  const handleMax=debounce((value)=>setMax(value))
-
-
-    // const handleSearch=(e)=>{
-    //     const value=e.target.value
-    //     if(clearDebounce.current){
-    //         clearTimeout(clearDebounce.current)
-    //     }
-    //     clearDebounce.current=setTimeout(()=>{
-    //         setSearch(value)
-    //         setMin(value)
-    //         setMax(value)
-    //     },500)
-    // }
 
     return (
         <div className="p-5">
