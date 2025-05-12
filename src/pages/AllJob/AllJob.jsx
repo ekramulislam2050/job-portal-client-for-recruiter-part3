@@ -6,25 +6,57 @@ import { IoSearchOutline } from "react-icons/io5";
 
 const AllJob = () => {
     const [sort, setSort] = useState(false)
-    const [search,setSearch]=useState("")
-    const clearDebounce = useRef(null)  
+    const [min, setMin] = useState('')
+    const [max, setMax] = useState('')
+    const [search, setSearch] = useState("")
+    const clearDebounce = useRef(null)
 
     // console.log(search)
-    const { jobs, loading } = useJobs(sort,search)
+    const { jobs, loading } = useJobs(sort, search, min, max)
     if (loading) {
         return <p className="text-5xl text-center text-red-500">Loading............</p>
     }
+
+    const debounce = (setToState ) => {
     
-    const handleSearch=(e)=>{
-        const sv=e.target.value
-        if(clearDebounce.current){
-            clearTimeout(clearDebounce.current)
-        }
-        clearDebounce.current=setTimeout(()=>{
-            setSearch(sv)
-        },500)
+            if (clearDebounce.current) {
+                clearTimeout(clearDebounce.current)
+            }
+            clearDebounce.current = setTimeout(setToState, 500)
     }
+  
     
+   const handleSearch=(e)=>{
+        const value = e.target.value
+        debounce(()=>setSearch(value))
+   }
+   const handleMin=(e)=>{
+     const value = e.target.value
+     debounce(()=>setMin(value))
+   }
+   const handleMax=(e)=>{
+     const value = e.target.value
+     debounce(()=>setMax(value))
+   }
+
+
+    // const handleSearch = debounce((value) => setSearch(value) )
+    //  const handleMin=debounce((value)=>setMin(value))
+    //  const handleMax=debounce((value)=>setMax(value))
+
+
+    // const handleSearch=(e)=>{
+    //     const value=e.target.value
+    //     if(clearDebounce.current){
+    //         clearTimeout(clearDebounce.current)
+    //     }
+    //     clearDebounce.current=setTimeout(()=>{
+    //         setSearch(value)
+    //         setMin(value)
+    //         setMax(value)
+    //     },500)
+    // }
+
     return (
         <div className="p-5">
             <h1 className='text-4xl font-bold text-center'>All Job</h1>
@@ -32,9 +64,14 @@ const AllJob = () => {
                 <button className={`btn btn-neutral ${sort && "btn-success"}`} onClick={() => setSort(!sort)}>
                     {sort == true ? "sorted by salary" : "sort by salary"}
                 </button>
-                <div className="flex items-center input">
+                <div className="flex items-center w-full max-w-2xl pb-2 border border-black input">
                     <IoSearchOutline />
-                    <input type="text" placeholder="search by location" onChange={handleSearch} />
+                    <input type="text" placeholder="search by location" onChange={handleSearch} className="w-full max-w-2xl" />
+                </div>
+                <div className="flex flex-col items-center w-full max-w-2xl gap-2 pb-2">
+
+                    <input type="text" placeholder="search by min-salary" onChange={ handleMin} className="w-full max-w-sm border border-black input" />
+                    <input type="text" placeholder="search by max-salary" onChange={ handleMax} className="w-full max-w-sm border border-black input" />
                 </div>
             </div>
             <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3'>
